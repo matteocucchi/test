@@ -3,9 +3,7 @@ pipeline{
     stages{
         stage('prova variabili'){
             steps{
-                script{
-                    checkout scm
-                }
+                echo prova
             }
         }
     }
