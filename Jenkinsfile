@@ -5,6 +5,9 @@ pipeline{
             steps{
                 
                 script {
+                    powershell "git clone https://github.com/matteocucchi/test.git"
+                    powershell "ls"
+                    /*
                     env.VERSIONE_OLD = powershell(script:"((gc versions.yaml | findstr 'version=') -replace 'version=', '')", returnStdout: true).trim()
                     env.VERSIONE_NEW = powershell(script:"[string]([double]((gc versions.yaml | findstr 'version=') -replace 'version=', '') + 0.1)", returnStdout: true).trim()
                    // if you access environment variable in the batch command
@@ -17,7 +20,7 @@ pipeline{
                     powershell "git add versions.yaml"
                     powershell "git commit -m '"+VERSIONE_OLD+"-->"+VERSIONE_NEW+"'"
                     powershell "git status"
-                    //powershell "git push"
+                    //powershell "git push"*/
                 }
             }
         }
