@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('prova variabili'){
             steps{
-                bat "ls"
+                bat "dir"
             }
         }
     }
