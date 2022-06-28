@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('prova variabili'){
             steps{
-                bat "ls -l"
+                bat "cat versions.yaml"
             }
         }
     }
