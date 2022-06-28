@@ -4,8 +4,9 @@ pipeline{
         stage('Exit if updated'){
             steps{
                 script{
-                    LAST_COMM = powershell(script:"git log -1 | findstr 'version_update'", returnStdout: true).trim()
-                    echo LAST_COMM
+                    powershell "git log -1 | findstr 'version_update'"
+                    //LAST_COMM = powershell(script:"git log -1 | findstr 'version_update'", returnStdout: true).trim()
+                    //echo LAST_COMM
                 }
             }
         }
