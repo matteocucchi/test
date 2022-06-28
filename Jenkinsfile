@@ -6,8 +6,7 @@ pipeline{
                 
                 script {
                     powershell "git clone https://github.com/matteocucchi/test.git"
-                    powershell "ls"
-                    /*
+                    powershell "cd test"
                     env.VERSIONE_OLD = powershell(script:"((gc versions.yaml | findstr 'version=') -replace 'version=', '')", returnStdout: true).trim()
                     env.VERSIONE_NEW = powershell(script:"[string]([double]((gc versions.yaml | findstr 'version=') -replace 'version=', '') + 0.1)", returnStdout: true).trim()
                    // if you access environment variable in the batch command
