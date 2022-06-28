@@ -1,6 +1,14 @@
 pipeline{
     agent any
     stages{
+        stage('Exit if updated'){
+            steps{
+                script{
+                    LAST_COMM = powershell(script:"git log -1 | findstr 'version_update'", returnStdout: true).trim()
+                    echo LAST_COMM
+                }
+            }
+        }
         stage('Version Update'){
             steps{
                 
@@ -13,7 +21,7 @@ pipeline{
                     powershell "echo ((gc versions.yaml) -replace '"+VERSIONE_OLD+"', '"+VERSIONE_NEW+"') > versions.yaml"
                     powershell "gc versions.yaml"
                     powershell "git add versions.yaml"
-                    powershell "git commit -m '"+VERSIONE_OLD+"-->"+VERSIONE_NEW+"'"
+                    powershell "git commit -m 'version_update "+VERSIONE_OLD+"-->"+VERSIONE_NEW+"'"
                     powershell "git push origin HEAD:main"
                 }
             }
@@ -24,17 +32,6 @@ pipeline{
                 echo VERSIONE_OLD
                 echo VERSIONE_NEW
             }
-        }
-
-        stage('Exit'){
-            steps{
-                script{
-                    LAST_COMM = powershell(script:"git log -1", returnStdout: true).trim()
-                    echo LAST_COMM
-                }
-            }
-        }
-
-        
+        }        
     }
 }
