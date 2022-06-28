@@ -25,5 +25,16 @@ pipeline{
                 echo VERSIONE_NEW
             }
         }
+
+        stage('Exit'){
+            steps{
+                script{
+                    LAST_COMM = powershell(script:"git log -1", returnStdout: true).trim()
+                    echo LAST_COMM
+                }
+            }
+        }
+
+        
     }
 }
