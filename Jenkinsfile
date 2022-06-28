@@ -5,11 +5,12 @@ pipeline{
             steps{
                 
                 script {
-                    env.VERSIONE = powershell(script:"(gc versions.yaml | findstr 'version=') -replace 'version=', ''", returnStdout: true).trim()
+                    env.VERSIONE_OLD = powershell(script:"((gc versions.yaml | findstr 'version=') -replace 'version=', '')", returnStdout: true).trim()
+                    env.VERSIONE_NEW = powershell(script:"[string]([double]((gc versions.yaml | findstr 'version=') -replace 'version=', '') + 0.1)", returnStdout: true).trim()
                    // if you access environment variable in the batch command
-                    env.VERSIONE = VERSIONE+1
-                    echo VERSIONE
-                    //powershell "echo ((gc versions.yaml) -replace '2.0', '3.0') > versions.yaml"
+                    echo VERSIONE_OLD
+                    echo VERSIONE_NEW
+                    //powershell "echo ((gc versions.yaml) -replace '"+VERSIONE+"', '3.0') > versions.yaml"
                 }
             }
         }
