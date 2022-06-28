@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage('prova variabili'){
+        stage('Version Update'){
             steps{
                 
                 script {
@@ -12,13 +12,17 @@ pipeline{
                     echo VERSIONE_NEW
                     powershell "echo ((gc versions.yaml) -replace '"+VERSIONE_OLD+"', '"+VERSIONE_NEW+"') > versions.yaml"
                     powershell "gc versions.yaml"
-                    powershell "ls"
-                    powershell "git status"
                     powershell "git add versions.yaml"
                     powershell "git commit -m '"+VERSIONE_OLD+"-->"+VERSIONE_NEW+"'"
-                    powershell "git status"
                     powershell "git push origin HEAD:main"
                 }
+            }
+        }
+
+        stage('Version check'){
+            steps{
+                echo VERSIONE_OLD
+                echo VERSIONE_NEW
             }
         }
     }
