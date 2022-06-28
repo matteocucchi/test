@@ -12,8 +12,9 @@ pipeline{
                     echo VERSIONE_NEW
                     powershell "echo ((gc versions.yaml) -replace '"+VERSIONE_OLD+"', '"+VERSIONE_NEW+"') > versions.yaml"
                     powershell "gc versions.yaml"
+                    powershell "ls"
                     powershell "git status"
-                    powershell "git add ."
+                    powershell "git add versions.yaml"
                     powershell "git commit -m '"+VERSIONE_OLD+"-->"+VERSIONE_NEW+"'"
                     powershell "git status"
                     //powershell "git push"
