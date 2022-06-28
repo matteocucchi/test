@@ -10,7 +10,7 @@ pipeline{
                    // if you access environment variable in the batch command
                     echo VERSIONE_OLD
                     echo VERSIONE_NEW
-                    //powershell "echo ((gc versions.yaml) -replace '"+VERSIONE+"', '3.0') > versions.yaml"
+                    powershell "echo ((gc versions.yaml) -replace '"+VERSIONE_OLD+"', '"+VERSIONE_NEW+"') > versions.yaml"
                 }
             }
         }
